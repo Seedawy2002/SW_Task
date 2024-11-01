@@ -157,7 +157,7 @@ your-project/
 
 ## UML Diagrams
 
-### [Class Diagram]([https://example.com/link-to-your-diagram](https://www.blocksandarrows.com/editor/9rsVoWc6qeR9zB3q))
+### [Class Diagram](https://www.blocksandarrows.com/editor/9rsVoWc6qeR9zB3q)
 ![image](https://github.com/user-attachments/assets/9f749289-dbe1-42be-872f-e16fbe67901c)
 
 ### [Sequence Diagram](https://www.blocksandarrows.com/editor/OZmz3n8l2S2SNlkR)

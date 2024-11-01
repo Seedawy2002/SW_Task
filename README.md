@@ -6,13 +6,14 @@ This project is a Django-based system designed for managing Key Performance Indi
 
 1. [Project Overview](#project-overview)
 2. [Features](#features)
-3. [Setup and Requirements](#setup-and-requirements)
-4. [Running the Project](#running-the-project)
-5. [API Documentation](#api-documentation)
-6. [Testing](#testing)
-7. [Directory Structure](#directory-structure)
-8. [UML Diagrams](#uml-diagrams)
-9. [License](#license)
+3. [Interpreter](#interpreter)
+4. [Setup and Requirements](#setup-and-requirements)
+5. [Running the Project](#running-the-project)
+6. [API Documentation](#api-documentation)
+7. [Testing](#testing)
+8. [Directory Structure](#directory-structure)
+9. [UML Diagrams](#uml-diagrams)
+10. [License](#license)
 
 ---
 
@@ -32,6 +33,27 @@ The KPI Processing System allows users to create, manage, and apply KPI calculat
 - **Comprehensive API Endpoints**: CRUD operations for KPIs and assets.
 - **Swagger and Postman Documentation**: For easy API testing.
 - **Extensive Testing**: Unit tests for API endpoints, interpreter functionality, and regex handling.
+
+## Interpreter
+
+The **Interpreter** in this project evaluates expressions for KPIs, supporting arithmetic operations and regex pattern matching. 
+
+### Supported Operations
+
+- **Arithmetic**:
+  - **Addition**: `+` (e.g., `value + 5`)
+  - **Subtraction**: `-` (e.g., `value - 3`)
+  - **Multiplication**: `*` (e.g., `value * 2`)
+  - **Division**: `/` (e.g., `value / 4`)
+  - **Exponentiation**: `^` (e.g., `value ^ 2`)
+
+- **Regex Pattern Matching**:
+  - **Syntax**: `Regex(value, "pattern")`
+  - **Example**: `Regex(value, "^dog")` matches if `value` starts with "dog".
+
+### How It Works
+
+The interpreter tokenizes and parses expressions, evaluates them based on the provided context (e.g., `value`), and handles both numeric calculations and regex-based conditions. This allows dynamic KPI evaluations based on user-defined expressions.
 
 ## Setup and Requirements
 

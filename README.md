@@ -1,155 +1,176 @@
-# KPI Project
+# KPI Processing System
 
-This project provides an API-based system for managing Key Performance Indicators (KPIs) using a Django backend. It includes automated data processing on server startup, a regex-enabled interpreter, and API endpoints for creating, linking, and evaluating KPIs.
+This project is a Django-based system designed for managing Key Performance Indicators (KPIs) with features like expression evaluation (including regular expressions), API support, and automated CSV data processing on startup.
 
 ## Table of Contents
-1. [Features](#features)
-2. [Project Structure](#project-structure)
-3. [UML Diagrams](#uml-diagrams)
-4. [Installation](#installation)
-5. [Configuration](#configuration)
-6. [Usage](#usage)
-7. [Running Tests](#running-tests)
-8. [API Documentation](#api-documentation)
+
+1. [Project Overview](#project-overview)
+2. [Features](#features)
+3. [Setup and Requirements](#setup-and-requirements)
+4. [Running the Project](#running-the-project)
+5. [API Documentation](#api-documentation)
+6. [Using Regex in KPI Equations](#using-regex-in-kpi-equations)
+7. [Testing](#testing)
+8. [Directory Structure](#directory-structure)
+9. [UML Diagrams](#uml-diagrams)
+10. [Contributing](#contributing)
+11. [License](#license)
 
 ---
 
-### Features
-- **Automated File Processing**: Processes `data_source.csv` upon server startup with time delays between entries.
-- **KPI Evaluation with Regex Support**: Evaluate KPI values with standard or regex-based expressions.
-- **CRUD API Endpoints**: Create and link KPIs, with asset linking.
-- **Documentation with Swagger**.
+## Project Overview
 
----
+The KPI Processing System allows users to create, manage, and apply KPI calculations based on expressions. It supports:
 
-### Project Structure
+- **Automated processing of KPI data** from CSV files.
+- **Custom expressions** for KPIs, including arithmetic and logical operations.
+- **Regex-based pattern matching** in expressions for advanced calculations.
+- **RESTful APIs** to interact with KPIs, link them to assets, and view processed data.
 
+## Features
+
+- **Automated CSV Processing**: Automatically processes CSV files on application startup with a delay between entries.
+- **Expression Evaluation with Regex Support**: Allows complex expressions including regex-based conditions.
+- **Comprehensive API Endpoints**: CRUD operations for KPIs and assets.
+- **Swagger and Postman Documentation**: For easy API testing.
+- **Extensive Testing**: Unit tests for API endpoints, interpreter functionality, and regex handling.
+
+## Setup and Requirements
+
+### Prerequisites
+
+- Python 3.10+
+- Django 4+
+- Install dependencies with:
+  ```bash
+  pip install -r requirements.txt
+  ```
+
+### Required Python Packages
+
+Add these to your `requirements.txt`:
 ```plaintext
-├── kpi_project/
-│   ├── kpi/
-│   │   ├── __init__.py
-│   │   ├── apps.py                  # App configuration and startup process
-│   │   ├── models.py                # Database models (KPIInfo, ProcessedData, KPIAssetLink)
-│   │   ├── views.py                 # API endpoint views, including file processing and KPI evaluation
-│   │   ├── interpreter/             # Custom interpreter for KPI evaluation with regex support
-│   │   │   ├── __init__.py
-│   │   │   ├── interpreter.py       # Core interpreter class
-│   │   │   ├── expressions/         # Expression definitions and operations
-│   │   ├── templates/               # Templates for web views (if any)
-│   │   ├── urls.py                  # URL routing for API endpoints
-│   │   ├── tests/
-│   │   │   ├── test_api.py          # Tests for API functionality
-│   │   │   ├── test_interpreter.py  # Tests for interpreter and regex functionalities
-│   ├── manage.py                    # Django management script
-│   ├── requirements.txt             # Dependencies for the project
-└── data/
-    ├── data_source.csv              # CSV data file processed at server start
+django
+djangorestframework
+drf-spectacular  # For Swagger documentation
 ```
 
----
+## Running the Project
 
-### UML Diagrams
-
-**Class Diagram**: Illustrates key classes like `KPIInfo`, `ProcessedData`, and `KPIAssetLink`, along with `Interpreter`.
-
-**Sequence Diagram**: For a sequence of file processing and KPI evaluation, showing interactions between API calls, database, and interpreter.
-
-_UML diagrams should be inserted here for better visualization. Use placeholders if diagrams are still being created._
-
----
-
-### Installation
-
-Ensure you have Python 3.x and Django installed. Clone this repository, then follow these steps:
-
-1. **Clone the repository**:
+1. **Clone the Repository**
    ```bash
-   git clone https://github.com/yourusername/kpi_project.git
-   cd kpi_project
+   git clone https://github.com/your-username/your-repo.git
+   cd your-repo
    ```
 
-2. **Set up a virtual environment**:
-   ```bash
-   python -m venv env
-   source env/bin/activate   # On Windows use `env\Scripts\activate`
-   ```
-
-3. **Install dependencies**:
+2. **Install Dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
-4. **Run migrations**:
+3. **Set Up Database**
    ```bash
    python manage.py migrate
    ```
 
----
-
-### Configuration
-
-1. **Database Setup**: Configure your database in `settings.py` (default: SQLite).
-2. **CSV File**: Place your `data_source.csv` in the `data/` folder. This file is processed at server startup.
-
----
-
-### Usage
-
-1. **Run the Server**:
+4. **Run the Server**
    ```bash
-   python manage.py runserver
+   python manage.py runserver --noreload
    ```
 
-2. **API Endpoints**: Access the API via `http://127.0.0.1:8000/`.
-   - **KPI Creation**: `/kpi/` (POST) - Create a new KPI.
-   - **Apply KPI**: `/apply-kpi/<kpi_id>/<value>/` (GET) - Evaluate a KPI by ID with a given value, supporting regex or standard expressions.
-   - **Link Asset**: `/link-asset/` (POST) - Link an asset to a KPI.
+5. **Auto-Processing CSV**
+   - Place your `data_source.csv` file in the `data/` folder.
+   - The project will automatically process this CSV on startup, with a 5-second delay between each line.
 
-3. **Swagger Documentation**:
-   - View interactive API docs at `http://127.0.0.1:8000/swagger/`.
+## API Documentation
 
----
+### Swagger UI
+
+1. Start the server and navigate to:
+   ```
+   http://127.0.0.1:8000/
+   ```
+   ![WhatsApp Image 2024-11-02 at 00 25 18_0f83fc01](https://github.com/user-attachments/assets/7f9b1cbe-3387-4660-870b-1d1e61ebf576)
+2. navigate to Swagger UI
+   ```
+   http://127.0.0.1:8000/swagger/
+   ```
+   ![WhatsApp Image 2024-11-02 at 00 25 50_bc7cf289](https://github.com/user-attachments/assets/2c8153cb-de7b-4f7d-b216-e2b0e612a7be)
+
+   Use this interactive documentation to test endpoints.
+
+### Postman Collection
+
+1. **Download Postman Collection**: `SW_Task_API.postman_collection.json`.
+2. **Import into Postman**:
+   - Open Postman, go to "File" > "Import" and select the collection file.
+   - Use this to test the API endpoints.
+
+### Available Endpoints
+
+- `POST /kpi/`: Create a new KPI.
+- `GET /kpi/<id>/apply/<value>/`: Apply the KPI calculation.
+- `POST /link-asset/`: Link an asset to a KPI.
+- `GET /processed-data/`: Retrieve processed KPI data.
+- `GET /asset-kpi-links/`: View all asset-KPI links.
+
+## Testing
 
 ### Running Tests
 
-Run all tests for the API and interpreter functionality:
+To execute unit tests, including tests for regex processing and KPI interpretation:
 
 ```bash
-python manage.py test kpi.tests
+manage.py test kpi.tests.test_api
+manage.py test kpi.tests.test_interpreter
 ```
 
-#### API Tests
-- Located in `kpi/tests/test_api.py`.
-- Includes tests for creating, linking, and evaluating KPIs.
+### Test Coverage
 
-#### Interpreter Tests
-- Located in `kpi/tests/test_interpreter.py`.
-- Tests standard expressions and regex functionality in KPI evaluation.
+1. **API Tests**: Verify CRUD operations, data retrieval, and link management.
+2. **Interpreter Tests**: Ensure accurate handling of expressions, including arithmetic and regex.
 
----
+### Sample Test Cases
 
-### API Documentation
+- **Creating and Applying KPI**: Verifies API support for creating KPIs and applying calculations.
+- **Regex Pattern Matching**: Ensures regex patterns behave as expected, matching or failing on provided values.
 
-**KPI Endpoints**
-- `GET /kpi/`: List all KPIs.
-- `POST /kpi/`: Create a new KPI.
-- `GET /apply-kpi/<kpi_id>/<value>/`: Evaluate a KPI with specified value.
+## Directory Structure
 
-**Asset-KPI Links**
-- `POST /link-asset/`: Link an asset to a KPI.
-- `GET /asset-kpi-links/`: List all asset-KPI links.
+```plaintext
+your-project/
+│
+├── kpi/
+│   ├── migrations/
+│   ├── models.py             # Models for KPI, ProcessedData, KPIAssetLink
+│   ├── views.py              # API views for CRUD and application
+│   ├── apps.py               # App configuration and CSV processing logic
+│   ├── tests/
+│   │   ├── test_api.py       # API endpoint tests
+│   │   └── test_interpreter.py # Interpreter and regex handling tests
+│   └── interpreter/          # Interpreter logic for evaluating expressions
+│
+├── data/
+│   └── data_source.csv       # CSV file for auto-processing on startup
+│
+├── manage.py
+└── requirements.txt          # List of project dependencies
+```
 
----
+## UML Diagrams
 
-### Requirements
+### Class Diagram
+*(Add a placeholder here for a class diagram, showing relations between `KPIInfo`, `ProcessedData`, `KPIAssetLink`, and the interpreter classes.)*
 
-- **Python** 3.x
-- **Django** >= 3.0
-- **Django REST Framework**
-- **drf-spectacular** (for Swagger/OpenAPI integration)
+### Sequence Diagram
+*(Include a sequence diagram to illustrate the flow of a request to the `apply` API endpoint, demonstrating how regex and standard expressions are processed.)*
 
-Refer to `requirements.txt` for the complete list of dependencies.
+**Tip**: Tools like Lucidchart, draw.io, or Visual Paradigm can help create UML diagrams. Save diagrams in a `docs/` folder for reference.
 
----
+## Contributing
 
-This README provides a comprehensive guide for understanding, setting up, and using the KPI Management System project. Be sure to replace placeholder information (e.g., UML diagram locations, repository URL) with actual content as you finalize the documentation.
+Contributions are welcome. Please open issues or submit pull requests. Ensure that all new features are covered by unit tests and adhere to project style.
+
+## License
+
+This project is licensed under the MIT License.

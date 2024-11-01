@@ -157,13 +157,20 @@ your-project/
 
 ## UML Diagrams
 
-### Class Diagram
-*(Add a placeholder here for a class diagram, showing relations between `KPIInfo`, `ProcessedData`, `KPIAssetLink`, and the interpreter classes.)*
+### [Class Diagram]([https://example.com/link-to-your-diagram](https://www.blocksandarrows.com/editor/9rsVoWc6qeR9zB3q))
+![image](https://github.com/user-attachments/assets/9f749289-dbe1-42be-872f-e16fbe67901c)
 
-### Sequence Diagram
-*(Include a sequence diagram to illustrate the flow of a request to the `apply` API endpoint, demonstrating how regex and standard expressions are processed.)*
+### [Sequence Diagram](https://www.blocksandarrows.com/editor/OZmz3n8l2S2SNlkR)
+![image](https://github.com/user-attachments/assets/9cd7ce36-fee5-4743-98c1-13cff27ab222)
 
-**Tip**: Tools like Lucidchart, draw.io, or Visual Paradigm can help create UML diagrams. Save diagrams in a `docs/` folder for reference.
+### [Activity Diagram](https://www.blocksandarrows.com/editor/MeZlNvkNNw6JeE3P)
+![image](https://github.com/user-attachments/assets/87ee4b0e-ce7e-42f2-b905-d1829dcd6691)
+
+### [Use Case Diagram](https://www.blocksandarrows.com/editor/O5Nrg8XvoEWnayMu)
+![image](https://github.com/user-attachments/assets/ae40e395-57cd-44a2-a56e-f0af58b1699f)
+
+### [Deployment Diagram](https://www.blocksandarrows.com/editor/RL1CYdBfrFOtqLqd)
+![image](https://github.com/user-attachments/assets/5ef19606-8195-4d1c-8185-11713fcc79f0)
 
 ## License
 

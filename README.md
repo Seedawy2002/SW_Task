@@ -136,23 +136,58 @@ manage.py test kpi.tests.test_interpreter
 ## Directory Structure
 
 ```plaintext
-your-project/
-│
-├── kpi/
-│   ├── migrations/
-│   ├── models.py             # Models for KPI, ProcessedData, KPIAssetLink
-│   ├── views.py              # API views for CRUD and application
-│   ├── apps.py               # App configuration and CSV processing logic
-│   ├── tests/
-│   │   ├── test_api.py       # API endpoint tests
-│   │   └── test_interpreter.py # Interpreter and regex handling tests
-│   └── interpreter/          # Interpreter logic for evaluating expressions
+kpi_project/
 │
 ├── data/
-│   └── data_source.csv       # CSV file for auto-processing on startup
+│   └── data_source.csv         # CSV file containing data source for KPI processing
 │
-├── manage.py
-└── requirements.txt          # List of project dependencies
+├── kpi/
+│   ├── __pycache__/            # Compiled Python files
+│   ├── interpreter/            # Main interpreter logic for evaluating expressions
+│   │   ├── __pycache__/
+│   │   ├── expressions/        # Handles different types of expressions
+│   │   │   ├── __pycache__/
+│   │   │   ├── bases/
+│   │   │   │   ├── __pycache__/
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── base_expression.py   # Base class for expressions
+│   │   │   │   └── base_operation.py    # Base class for operations
+│   │   │   ├── operations/              # Contains different operations for expressions
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── function_expression.py # Expression for functions
+│   │   │   │   ├── number_expression.py   # Expression for numerical values
+│   │   │   │   ├── string_expression.py   # Expression for strings
+│   │   │   │   └── variable_expression.py # Expression for variables
+│   │   ├── functions/                     # Utility functions for interpreter
+│   │   │   ├── __init__.py
+│   │   │   ├── factory.py                # Factory pattern implementation for expressions
+│   │   │   ├── interpreter.py            # Main interpreter logic
+│   │   │   ├── parser.py                 # Parses input expressions
+│   │   │   └── tokenizer.py              # Tokenizes expressions into components
+│   │
+│   ├── migrations/                       # Database migrations
+│   ├── tests/
+│   │   ├── __pycache__/
+│   │   ├── test_api.py                   # Tests for API endpoints
+│   │   ├── test_interpreter.py           # Tests for interpreter functions
+│   │   ├── run_example.py                # Example script for running tests or examples
+│   │
+│   ├── admin.py                          # Admin configurations
+│   ├── apps.py                           # App configuration
+│   ├── models.py                         # Database models
+│   ├── urls.py                           # URL configurations
+│   └── views.py                          # View logic for API endpoints
+│
+├── kpi_project/
+│   ├── __pycache__/
+│   ├── __init__.py                       # Project initialization file
+│   ├── asgi.py                           # ASGI configuration for asynchronous support
+│   ├── settings.py                       # Project settings
+│   ├── urls.py                           # Root URL configuration
+│   └── wsgi.py                           # WSGI configuration for deployment
+│
+├── db.sqlite3                            # SQLite database file
+└── manage.py                             # Django management script
 ```
 
 ## UML Diagrams

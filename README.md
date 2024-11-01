@@ -9,12 +9,10 @@ This project is a Django-based system designed for managing Key Performance Indi
 3. [Setup and Requirements](#setup-and-requirements)
 4. [Running the Project](#running-the-project)
 5. [API Documentation](#api-documentation)
-6. [Using Regex in KPI Equations](#using-regex-in-kpi-equations)
-7. [Testing](#testing)
-8. [Directory Structure](#directory-structure)
-9. [UML Diagrams](#uml-diagrams)
-10. [Contributing](#contributing)
-11. [License](#license)
+6. [Testing](#testing)
+7. [Directory Structure](#directory-structure)
+8. [UML Diagrams](#uml-diagrams)
+9. [License](#license)
 
 ---
 
@@ -166,10 +164,6 @@ your-project/
 *(Include a sequence diagram to illustrate the flow of a request to the `apply` API endpoint, demonstrating how regex and standard expressions are processed.)*
 
 **Tip**: Tools like Lucidchart, draw.io, or Visual Paradigm can help create UML diagrams. Save diagrams in a `docs/` folder for reference.
-
-## Contributing
-
-Contributions are welcome. Please open issues or submit pull requests. Ensure that all new features are covered by unit tests and adhere to project style.
 
 ## License
 
